@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Button } from "~/components/ui/button";
 import { Menu, X } from "lucide-react";
+import LoginBtn from "./LoginBtn";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -62,8 +63,9 @@ export default function Navbar() {
         <div className="flex items-center gap-4">
           {/* <ThemeToggle /> */}
           <Button asChild className="hidden md:inline-flex">
-            <Link href="/auth/signin">Sign In</Link>
+            <Link href="/customizer">Start Designing</Link>
           </Button>
+          <LoginBtn />
 
           {/* Mobile Menu Button */}
           <button

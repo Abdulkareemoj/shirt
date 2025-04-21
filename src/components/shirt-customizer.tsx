@@ -30,6 +30,8 @@ import ColorPicker from "./color-picker";
 import Shirt from "./shirt";
 import Loader from "./loader";
 import SceneCamera from "./scene-camera";
+import Link from "next/link";
+import LoginBtn from "./LoginBtn";
 
 export default function ShirtCustomizer() {
   const [shirtColor, setShirtColor] = useState("#ffffff");
@@ -150,7 +152,7 @@ export default function ShirtCustomizer() {
   return (
     <div className="flex flex-col lg:flex-row h-screen w-full">
       {/* Left Panel - Customization Options */}
-      <div className="w-full lg:w-1/3 p-4 overflow-y-auto border-r">
+      <div className="w-full lg:w-1/4 p-4 overflow-y-auto border-r">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-bold">Shirt Customizer</h1>
           <div className="flex gap-2">
@@ -472,7 +474,7 @@ export default function ShirtCustomizer() {
       </div>
 
       {/* Right Panel - 3D Preview */}
-      <div className="w-full lg:w-2/3 h-[500px] lg:h-full relative">
+      <div className="w-full lg:w-3/4 h-[500px] lg:h-full relative">
         {isLoading && <Loader />}
         <Canvas
           ref={canvasRef}
@@ -527,6 +529,17 @@ export default function ShirtCustomizer() {
           </Suspense>
         </Canvas>
 
+        <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10 flex gap-4">
+          <Button variant={"secondary"}>
+            <Link href="/gallery">View Gallery</Link>
+          </Button>
+          <Button>
+            <Link href="/designs">Saved Designs</Link>
+          </Button>
+        </div>
+        <div className="absolute top-4 right-1 transform -translate-x-1/2 z-10 flex gap-4">
+          <LoginBtn />
+        </div>
         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
           <AnimatePresence>
             {["front", "back", "left", "right"].map((view) => (

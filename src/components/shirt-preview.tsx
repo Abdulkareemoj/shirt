@@ -10,6 +10,7 @@ import {
 } from "@react-three/drei";
 import Shirt from "./shirt";
 import { motion } from "motion/react";
+import Link from "next/link";
 
 export default function ShirtPreview() {
   const [mounted, setMounted] = useState(false);
@@ -29,6 +30,22 @@ export default function ShirtPreview() {
 
   return (
     <div className="w-full h-full relative">
+      {/* Navigation buttons overlay */}
+      <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10 flex gap-4">
+        <Link
+          href="/customize"
+          className="px-4 py-2 bg-white/90 backdrop-blur-sm border border-primary rounded-md shadow-md hover:bg-primary/10 transition-colors text-sm font-medium"
+        >
+          Start Customizing
+        </Link>
+        <Link
+          href="/gallery"
+          className="px-4 py-2 bg-white/90 backdrop-blur-sm border border-primary rounded-md shadow-md hover:bg-primary/10 transition-colors text-sm font-medium"
+        >
+          View Gallery
+        </Link>
+      </div>
+
       <Canvas
         camera={{ position: [0, 0, 2.5], fov: 25 }}
         className="w-full h-full"
@@ -56,7 +73,7 @@ export default function ShirtPreview() {
                 }
                 logoUrl={null}
                 logoPosition="chest"
-                textContent="23"
+                textContent="3"
                 textContent2="CUSTOMIZER"
                 textColor={currentColor === 0 ? "#000000" : "#ffffff"}
                 textStyle="curved"

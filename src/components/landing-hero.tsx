@@ -7,13 +7,13 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "~/components/ui/button";
 
 export default function LandingHero() {
-  const [mounted, setMounted] = useState(false);
+  // const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  // useEffect(() => {
+  //   setMounted(true);
+  // }, []);
 
-  if (!mounted) return null;
+  // if (!mounted) return null;
 
   return (
     <section className="relative bg-gradient-to-b from-muted/50 to-muted py-24 md:py-32">
