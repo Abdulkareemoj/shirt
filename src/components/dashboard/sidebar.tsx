@@ -13,6 +13,7 @@ import {
   Settings,
   HelpCircle,
   Menu,
+  Shirt,
 } from "lucide-react";
 
 import { Home } from "lucide-react";
@@ -109,6 +110,9 @@ export default function Sidebar() {
                   </NavItem>
                   <NavItem href="/dashboard/recent" icon={Folder}>
                     Recent
+                  </NavItem>
+                  <NavItem href="/customizer" icon={Shirt}>
+                    Customizer
                   </NavItem>
                 </div>
               </div>

@@ -37,11 +37,14 @@ export default function LoginBtn() {
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
+          <DropdownMenuItem onClick={() => router.push("/dashboard")}>
+            Dashboard
+          </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={() => router.push("/settings")}>
+          <DropdownMenuItem onClick={() => router.push("/dashboard/settings")}>
             Settings
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => router.push("/support")}>
+          <DropdownMenuItem onClick={() => router.push("/dashboard/support")}>
             Support
           </DropdownMenuItem>
           <DropdownMenuSeparator />
