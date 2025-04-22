@@ -2,7 +2,6 @@ import "~/styles/globals.css";
 
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
-import Navbar from "~/components/navbar";
 import { ThemeProvider } from "~/components/theme-provider";
 
 export const metadata: Metadata = {
@@ -22,10 +21,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
+      <head />
       <body className={geist.className}>
         <div className="flex min-h-screen flex-col">
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-            <Navbar />
             {children}
           </ThemeProvider>
         </div>
