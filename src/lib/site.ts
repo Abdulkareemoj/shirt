@@ -29,18 +29,9 @@ export const footerLinks = [
     title: "Product",
     items: [
       { title: "Features", href: "#" },
-      { title: "Gallery", href: "/roadmap" },
+      { title: "Roadmap", href: "/roadmap" },
       { title: "Customers", href: "#" },
       { title: "Changelog", href: "/changelog" },
-    ],
-  },
-  {
-    title: "Docs",
-    items: [
-      { title: "Introduction", href: "/docs" },
-      { title: "Installation", href: "#" },
-      { title: "Components", href: "#" },
-      { title: "Code Blocks", href: "#" },
     ],
   },
 ];
