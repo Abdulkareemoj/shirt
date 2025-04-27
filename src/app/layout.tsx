@@ -3,8 +3,7 @@ import "~/styles/globals.css";
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import { ThemeProvider } from "~/components/theme-provider";
-
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "3D Shirt Customizer",
   description:
     "Design custom shirts in stunning 3D with our interactive customizer tool",

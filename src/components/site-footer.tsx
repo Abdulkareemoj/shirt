@@ -6,7 +6,9 @@ import { cn } from "~/lib/utils";
 
 import { NewsletterForm } from "~/components/newsletter-form";
 import { Github } from "lucide-react";
-export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
+export default function SiteFooter({
+  className,
+}: React.HTMLAttributes<HTMLElement>) {
   return (
     <footer className={cn("border-t", className)}>
       <div className=" grid px-20 grid-cols-2 gap-6 py-14 md:grid-cols-5">
