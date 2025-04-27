@@ -217,7 +217,7 @@ export default function SettingsNotificationsPage() {
                   </FormLabel>
                   <FormDescription>
                     You can manage your mobile notifications in the{" "}
-                    <Link to="/examples/forms">mobile settings</Link> page.
+                    <Link href="/examples/forms">mobile settings</Link> page.
                   </FormDescription>
                 </div>
               </FormItem>

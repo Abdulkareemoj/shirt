@@ -32,8 +32,7 @@ export function NewsletterForm() {
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     form.reset();
-    toast({
-      title: "You submitted the following values:",
+    toast("You submitted the following values:", {
       description: (
         <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
           <code className="text-white">{JSON.stringify(data, null, 2)}</code>
@@ -66,7 +65,7 @@ export function NewsletterForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" size="sm" rounded="full" className="px-4">
+        <Button type="submit" size="sm" variant="secondary" className="px-4">
           Subscribe
         </Button>
       </form>

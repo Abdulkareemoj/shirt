@@ -134,7 +134,7 @@ export default function SettingsProfilePage() {
                 </Select>
                 <FormDescription>
                   You can manage verified email addresses in your{" "}
-                  <Link to="/examples/forms">email settings</Link>.
+                  <Link href="/examples/forms">email settings</Link>.
                 </FormDescription>
                 <FormMessage />
               </FormItem>
