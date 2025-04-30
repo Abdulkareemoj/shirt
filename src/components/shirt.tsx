@@ -1,12 +1,12 @@
 "use client";
 
-import { useRef, useMemo, useEffect } from "react";
+import { useRef, useMemo, useEffect, type JSX } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Decal, useTexture, Text } from "@react-three/drei";
 import * as THREE from "three";
 import { easing } from "maath";
 import { useSpring, animated } from "@react-spring/three";
-import type { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
+import type { GLTF } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 // Define the type for our GLTF result
 type GLTFResult = GLTF & {
@@ -223,9 +223,12 @@ export default function Shirt({
       );
     }
   });
+  const AnimatedGroup = animated.group as unknown as React.FC<
+    JSX.IntrinsicElements["group"]
+  >;
 
   return (
-    <animated.group
+    <AnimatedGroup
       ref={group}
       dispose={null}
       scale={springs.scale}
@@ -273,7 +276,7 @@ export default function Shirt({
           )}
 
           {/* Front number text */}
-          <animated.group
+          <AnimatedGroup
             scale={textSprings.scale}
             opacity={textSprings.opacity}
           >
@@ -290,10 +293,10 @@ export default function Shirt({
             >
               {textContent}
             </Text>
-          </animated.group>
+          </AnimatedGroup>
 
           {/* Team name text */}
-          <animated.group
+          <AnimatedGroup
             scale={textSprings.scale}
             opacity={textSprings.opacity}
           >
@@ -313,7 +316,7 @@ export default function Shirt({
             >
               {textContent2}
             </Text>
-          </animated.group>
+          </AnimatedGroup>
 
           {/* Back number text */}
           <animated.group
@@ -376,7 +379,7 @@ export default function Shirt({
           />
         </mesh>
       </group>
-    </animated.group>
+    </AnimatedGroup>
   );
 }
 
