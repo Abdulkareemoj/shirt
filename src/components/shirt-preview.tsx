@@ -61,8 +61,7 @@ export default function ShirtPreview() {
             rotation={[0, -0.3, 0]}
             polar={[-Math.PI / 3, Math.PI / 3]}
             azimuth={[-Math.PI / 1.4, Math.PI / 1.4]}
-            config={{ mass: 2, tension: 400 }}
-            snap={{ mass: 4, tension: 400 }}
+            snap={true}
           >
             <Center>
               <Shirt
