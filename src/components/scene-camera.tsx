@@ -58,7 +58,7 @@ export default function SceneCamera({
   // Apply the spring values to the camera
   useFrame(() => {
     if (!isRotating) {
-      const [x, y, z] = spring.position.get();
+      const [x = 0, y = 0, z = 2.5] = spring.position.get() ?? [];
       camera.position.set(x, y, z);
       camera.lookAt(0, 0, 0);
     }
