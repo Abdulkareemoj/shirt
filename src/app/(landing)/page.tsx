@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -13,6 +14,7 @@ import FeatureCard from "~/components/feature-card";
 import TestimonialCard from "~/components/testimonial-card";
 import PricingCard from "~/components/pricing-card";
 import ShirtPreview from "~/components/shirt-preview";
+import { CookieConsent } from "~/components/cookie-consent";
 
 export default function IndexPage() {
   return (
@@ -20,7 +22,15 @@ export default function IndexPage() {
       <main className="min-h-screen">
         {/* Hero Section */}
         <LandingHero />
-
+        <CookieConsent
+          variant="default"
+          onAcceptCallback={() => {
+            // Handle accept
+          }}
+          onDeclineCallback={() => {
+            // Handle decline
+          }}
+        />
         {/* Features Section */}
         <section className="py-20 bg-white">
           <div className=" px-4 md:px-6">
