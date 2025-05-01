@@ -24,12 +24,10 @@ export default function ColorPicker({
   const [tempColor, setTempColor] = useState(color);
 
   const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTempColor(e.target.value);
     onChange(e.target.value);
   };
 
   const handlePresetClick = (presetColor: string) => {
-    setTempColor(presetColor);
     onChange(presetColor);
   };
 

@@ -1,3 +1,4 @@
+"use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CalendarIcon, SortAscIcon, CheckIcon } from "lucide-react";
 import { format } from "date-fns";
@@ -6,7 +7,7 @@ import * as z from "zod";
 
 import { cn } from "~/lib/utils";
 import { Button } from "~/components/ui/button";
-import { Calendar } from "~/components/ui/calendar";
+// import { Calendar } from "~/components/ui/calendar";
 import {
   Command,
   CommandEmpty,
@@ -140,7 +141,7 @@ export default function SettingsAccountPage() {
                     </FormControl>
                   </PopoverTrigger>
                   <PopoverContent className="w-auto p-0" align="start">
-                    <Calendar
+                    {/* <Calendar
                       mode="single"
                       selected={field.value}
                       onSelect={field.onChange}
@@ -148,7 +149,7 @@ export default function SettingsAccountPage() {
                         date > new Date() || date < new Date("1900-01-01")
                       }
                       initialFocus
-                    />
+                    /> */}
                   </PopoverContent>
                 </Popover>
                 <FormDescription>
