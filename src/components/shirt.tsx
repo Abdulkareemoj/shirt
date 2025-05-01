@@ -126,24 +126,24 @@ export default function Shirt({
   }, [animate, api, textApi, lastColorChange, logoPosition, textStyle]);
 
   // Handle text positioning based on style
-  const getTextPosition = () => {
+  const getTextPosition = (): [number, number, number] => {
     switch (textStyle) {
       case "curved":
         return [0, 0.05, 0.15];
       case "arched":
         return [0, 0.1, 0.15];
-      default: // straight
+      default:
         return [0, 0, 0.15];
     }
   };
 
-  const getTextRotation = () => {
+  const getTextRotation = (): [number, number, number] => {
     switch (textStyle) {
       case "curved":
         return [-0.1, 0, 0];
       case "arched":
         return [0.1, 0, 0];
-      default: // straight
+      default:
         return [0, 0, 0];
     }
   };
@@ -231,9 +231,9 @@ export default function Shirt({
     <AnimatedGroup
       ref={group}
       dispose={null}
-      scale={springs.scale}
-      position={springs.position}
-      rotation={springs.rotation}
+      scale={springs.scale.to((x, y, z) => [x, y, z]) as any}
+      position={springs.position.to((x, y, z) => [x, y, z]) as any}
+      rotation={springs.rotation.to((x, y, z) => [x, y, z]) as any}
     >
       <group scale={[1.5, 1.5, 1.5]}>
         {/* Main shirt body */}
@@ -277,8 +277,7 @@ export default function Shirt({
 
           {/* Front number text */}
           <AnimatedGroup
-            scale={textSprings.scale}
-            opacity={textSprings.opacity}
+            scale={textSprings.scale.to((x, y, z) => [x, y, z]) as any}
           >
             <Text
               position={[0, -0.1, 0.15]}
@@ -290,6 +289,8 @@ export default function Shirt({
               outlineWidth={hasOutline ? 0.01 : 0}
               outlineColor={outlineColor}
               font="/fonts/Inter_Bold.json"
+              material-opacity={textSprings.opacity.to((o) => o) as any}
+              material-transparent
             >
               {textContent}
             </Text>
@@ -297,12 +298,12 @@ export default function Shirt({
 
           {/* Team name text */}
           <AnimatedGroup
-            scale={textSprings.scale}
-            opacity={textSprings.opacity}
+            scale={textSprings.scale.to((x, y, z) => [x, y, z]) as any}
           >
             <Text
               position={getTextPosition()}
               rotation={getTextRotation()}
+              material-opacity={textSprings.opacity.to((o) => o) as any}
               fontSize={0.08}
               color={textColor}
               anchorX="center"
@@ -310,33 +311,34 @@ export default function Shirt({
               outlineWidth={hasOutline ? 0.005 : 0}
               outlineColor={outlineColor}
               font="/fonts/Inter_Bold.json"
-              curveRadius={
-                textStyle === "curved" ? 0.5 : textStyle === "arched" ? -0.5 : 0
-              }
+              // curveRadius={
+              //   textStyle === "curved" ? 0.5 : textStyle === "arched" ? -0.5 : 0
+              // }
             >
               {textContent2}
             </Text>
           </AnimatedGroup>
 
           {/* Back number text */}
-          <animated.group
-            scale={textSprings.scale}
-            opacity={textSprings.opacity}
+          <AnimatedGroup
+            scale={textSprings.scale.to((x, y, z) => [x, y, z]) as any}
           >
             <Text
-              position={[0, 0, -0.15]}
-              rotation={[0, Math.PI, 0]}
-              fontSize={0.25}
+              position={[0, -0.1, 0.15]}
+              rotation={[0, 0, 0]}
+              fontSize={0.2}
               color={textColor}
               anchorX="center"
               anchorY="middle"
               outlineWidth={hasOutline ? 0.01 : 0}
               outlineColor={outlineColor}
               font="/fonts/Inter_Bold.json"
+              material-opacity={textSprings.opacity.to((o) => o) as any}
+              material-transparent
             >
               {textContent}
             </Text>
-          </animated.group>
+          </AnimatedGroup>
         </mesh>
 
         {/* Collar */}
@@ -384,7 +386,19 @@ export default function Shirt({
 }
 
 // Custom hook to create a detailed shirt model
-function useDetailedShirtModel() {
+function useDetailedShirtModel(): {
+  nodes: {
+    Shirt: THREE.Mesh;
+    Collar: THREE.Mesh;
+    LeftSleeve: THREE.Mesh;
+    RightSleeve: THREE.Mesh;
+  };
+  materials: {
+    ShirtMaterial: THREE.MeshStandardMaterial;
+    CollarMaterial: THREE.MeshStandardMaterial;
+    SleeveMaterial: THREE.MeshStandardMaterial;
+  };
+} {
   // Create geometries for a more detailed shirt
   const nodes = useMemo(() => {
     // Create a more detailed shirt body
@@ -392,21 +406,30 @@ function useDetailedShirtModel() {
     shirtGeometry.translate(0, 0, 0);
     // Modify vertices to create a more realistic shirt shape
     const shirtPositionAttribute = shirtGeometry.getAttribute("position");
-    const shirtVertices = shirtPositionAttribute.array;
+    const shirtVertices = shirtPositionAttribute.array as Float32Array;
+
     for (let i = 0; i < shirtVertices.length; i += 3) {
-      // Add some natural curvature to the shirt
-      if (shirtVertices[i + 1] < 0) {
-        // Taper the bottom
-        shirtVertices[i] *= 0.9 + (shirtVertices[i + 1] + 0.4) * 0.25;
-        shirtVertices[i + 2] *= 0.9 + (shirtVertices[i + 1] + 0.4) * 0.25;
+      const x = shirtVertices[i]!;
+      const y = shirtVertices[i + 1]!;
+      const z = shirtVertices[i + 2]!;
+
+      let newX = x;
+      let newZ = z;
+
+      if (y < 0) {
+        const factor = 0.9 + (y + 0.4) * 0.25;
+        newX = x * factor;
+        newZ = z * factor;
       }
 
-      // Add some natural bulge to the front
-      if (shirtVertices[i + 2] > 0) {
-        shirtVertices[i + 2] +=
-          0.05 * Math.sin((shirtVertices[i + 1] + 0.4) * Math.PI);
+      if (z > 0) {
+        newZ += 0.05 * Math.sin((y + 0.4) * Math.PI);
       }
+
+      shirtVertices[i] = newX;
+      shirtVertices[i + 2] = newZ;
     }
+
     shirtPositionAttribute.needsUpdate = true;
     shirtGeometry.computeVertexNormals();
 

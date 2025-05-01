@@ -26,12 +26,12 @@ import { Switch } from "~/components/ui/switch";
 import { Separator } from "~/components/ui/separator";
 import { Download, RotateCcw, Save, Upload } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import ColorPicker from "./color-picker";
 import Shirt from "./shirt";
 import Loader from "./loader";
 import SceneCamera from "./scene-camera";
 import Link from "next/link";
 import LoginBtn from "./LoginBtn";
+import ColorPicker from "./color-picker";
 
 export default function ShirtCustomizer() {
   const [shirtColor, setShirtColor] = useState("#ffffff");
@@ -142,11 +142,11 @@ export default function ShirtCustomizer() {
 
   // Handle color changes with animation triggers
   const handleColorChange = (
-    setter: (color: string) => void,
+    setColor: React.Dispatch<React.SetStateAction<string>>,
     color: string
   ) => {
-    setter(color);
-    setLastColorChange(Date.now());
+    console.log("handleColorChange called with:", color); // Debugging
+    setColor(color);
   };
 
   return (
@@ -154,7 +154,7 @@ export default function ShirtCustomizer() {
       {/* Left Panel - Customization Options */}
       <div className="w-full lg:w-1/4 p-4 overflow-y-auto border-r">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold">Shirt Customizer</h1>
+          <h1 className="text-2xl font-bold">Customizer</h1>
           <div className="flex gap-2">
             <Button variant="outline" size="sm" onClick={handleSaveDesign}>
               <Save className="h-4 w-4 mr-2" />
@@ -493,11 +493,10 @@ export default function ShirtCustomizer() {
 
             <PresentationControls
               global
-              rotation={[0, isRotating ? null : 0, 0]}
+              rotation={[0, isRotating ? Math.PI / 2 : 0, 0]}
               polar={[-Math.PI / 3, Math.PI / 3]}
               azimuth={[-Math.PI / 1.4, Math.PI / 1.4]}
-              config={{ mass: 2, tension: 400 }}
-              snap={{ mass: 4, tension: 400 }}
+              snap={true}
             >
               <Center>
                 <Shirt
@@ -531,10 +530,10 @@ export default function ShirtCustomizer() {
 
         <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10 flex gap-4">
           <Button variant={"secondary"}>
-            <Link href="/gallery">View Gallery</Link>
+            <Link href="/dashboard/gallery">View Gallery</Link>
           </Button>
           <Button>
-            <Link href="/designs">Saved Designs</Link>
+            <Link href="/dashboard/designs">Saved Designs</Link>
           </Button>
         </div>
         <div className="absolute top-4 right-1 transform -translate-x-1/2 z-10 flex gap-4">

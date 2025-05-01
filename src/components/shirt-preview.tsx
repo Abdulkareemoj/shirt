@@ -65,10 +65,11 @@ export default function ShirtPreview() {
           >
             <Center>
               <Shirt
-                color={colors[currentColor]}
-                accentColor1={accentColors[currentColor]}
+                color={colors[currentColor] ?? "#ffffff"}
+                accentColor1={accentColors[currentColor] ?? "#4a90e2"}
                 accentColor2={
-                  accentColors[(currentColor + 2) % accentColors.length]
+                  accentColors[(currentColor + 2) % accentColors.length] ??
+                  "#e74c3c"
                 }
                 logoUrl={null}
                 logoPosition="chest"
