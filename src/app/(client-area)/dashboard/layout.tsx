@@ -2,8 +2,20 @@ import type { ReactNode } from "react";
 import Sidebar from "~/components/dashboard/sidebar";
 import TopNav from "~/components/dashboard/top-nav";
 import { ThemeProvider } from "~/components/theme-provider";
+import { auth } from "~/server/auth";
+import { redirect } from "next/navigation";
 
-export default function DashboardLayout({ children }: { children: ReactNode }) {
+export default async function DashboardLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  const session = await auth();
+
+  if (!session?.user) {
+    redirect("/signin");
+  }
+
   return (
     <div className="flex h-screen">
       <Sidebar />
