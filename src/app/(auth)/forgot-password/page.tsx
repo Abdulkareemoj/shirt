@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import Link from "next/link";
 import type { z } from "zod";
@@ -22,11 +23,11 @@ import {
   FormLabel,
   FormMessage,
 } from "~/components/ui/form";
-// import { forgotPassword } from "../auth-actions";
-import { schemaForgotPassword } from "~/lib/schemas";
-
-// Infer the type from the schema
-type ForgotPasswordFormValues = z.infer<typeof schemaForgotPassword>;
+import { forgotPassword } from "../auth-actions";
+import {
+  schemaForgotPassword,
+  type ForgotPasswordFormValues,
+} from "~/lib/schemas";
 
 export default function ForgotPassword() {
   const [status, setStatus] = useState<{
@@ -36,6 +37,7 @@ export default function ForgotPassword() {
     type: null,
     message: null,
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   // Initialize the form with React Hook Form and Zod resolver
   const form = useForm<ForgotPasswordFormValues>({
@@ -46,18 +48,29 @@ export default function ForgotPassword() {
   });
 
   // Handle form submission
-  // async function onSubmit(values: ForgotPasswordFormValues) {
-  //   const result = await forgotPassword(values);
+  async function onSubmit(values: ForgotPasswordFormValues) {
+    setIsLoading(true);
 
-  //   setStatus({
-  //     type: result.success ? "success" : "error",
-  //     message: result.message,
-  //   });
+    try {
+      const result = await forgotPassword(values);
 
-  //   if (result.success) {
-  //     form.reset();
-  //   }
-  // }
+      setStatus({
+        type: result.success ? "success" : "error",
+        message: result.message,
+      });
+
+      if (result.success) {
+        form.reset();
+      }
+    } catch (error) {
+      setStatus({
+        type: "error",
+        message: "An unexpected error occurred. Please try again.",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   return (
     <main className="min-h-screen flex items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
@@ -72,9 +85,7 @@ export default function ForgotPassword() {
           </CardDescription>
         </CardHeader>
         <Form {...form}>
-          <form
-          // onSubmit={form.handleSubmit(onSubmit)}
-          >
+          <form onSubmit={form.handleSubmit(onSubmit)}>
             <CardContent className="space-y-4">
               {status.message && (
                 <div
@@ -106,15 +117,11 @@ export default function ForgotPassword() {
                 )}
               />
 
-              <Button
-                type="submit"
-                className="w-full"
-                disabled={form.formState.isSubmitting}
-              >
-                {form.formState.isSubmitting ? "Sending..." : "Send Reset Link"}
+              <Button type="submit" className="w-full" disabled={isLoading}>
+                {isLoading ? "Sending..." : "Send Reset Link"}
               </Button>
             </CardContent>
-            <CardFooter className="flex justify-center">
+            <CardFooter className="flex pt-4 justify-center">
               <Link
                 href="/signin"
                 className="text-sm text-muted-foreground hover:text-primary"

@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import type { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import {
@@ -22,13 +21,8 @@ import {
   FormLabel,
   FormMessage,
 } from "~/components/ui/form";
-// import { loginUser } from "../auth-actions";
-import { schemaLogin } from "~/lib/schemas";
+import { schemaLogin, type SignInFormValues } from "~/lib/schemas";
 import { useRouter } from "next/navigation";
-import AuthLayout from "../layout";
-
-// Infer the type from the schema
-type SignInFormValues = z.infer<typeof schemaLogin>;
 
 export default function SignIn() {
   const [serverError, setServerError] = useState<string | null>(null);
@@ -116,7 +110,7 @@ export default function SignIn() {
                 {form.formState.isSubmitting ? "Signing in..." : "Sign In"}
               </Button>
             </CardContent>
-            <CardFooter className="flex flex-col space-y-2 text-sm text-muted-foreground">
+            <CardFooter className="flex flex-col py-4 text-sm text-muted-foreground">
               <div className="flex justify-between w-full">
                 <Link href="/forgot-password" className="hover:text-primary">
                   Forgot Password?
