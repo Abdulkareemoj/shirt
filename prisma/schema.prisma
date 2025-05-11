@@ -14,18 +14,6 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Post {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-
-    createdBy   User   @relation(fields: [createdById], references: [id])
-    createdById String
-
-    @@index([name])
-}
-
 // Necessary for Next auth
 model Account {
     id                       String  @id @default(cuid())
@@ -59,10 +47,14 @@ model User {
     name          String?
     email         String?   @unique
     emailVerified DateTime?
+    password      String?
     image         String?
+    role          Role      @default(USER)
     accounts      Account[]
     sessions      Session[]
-    posts         Post[]
+    designs       Design[]
+    createdAt     DateTime  @default(now())
+    updatedAt     DateTime  @updatedAt
 }
 
 model VerificationToken {
@@ -71,4 +63,33 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+}
+
+// Application Models
+model Design {
+    id           String   @id @default(cuid())
+    name         String
+    description  String?
+    userId       String
+    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    shirtColor   String
+    accentColor1 String
+    accentColor2 String
+    logoUrl      String?
+    logoPosition String?
+    textContent  String?
+    textContent2 String?
+    textColor    String?
+    textStyle    String?
+    hasOutline   Boolean  @default(false)
+    outlineColor String?
+    isPublic     Boolean  @default(false)
+    createdAt    DateTime @default(now())
+    updatedAt    DateTime @updatedAt
+}
+
+// Enums
+enum Role {
+    USER
+    ADMIN
 }
