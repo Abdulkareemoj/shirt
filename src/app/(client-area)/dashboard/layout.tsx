@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import Sidebar from "~/components/dashboard/sidebar";
 import TopNav from "~/components/dashboard/top-nav";
-import { ThemeProvider } from "~/components/theme-provider";
+import { ThemeProvider } from "~/components/shared/theme-provider";
 import { auth } from "~/server/auth";
 import { redirect } from "next/navigation";
 

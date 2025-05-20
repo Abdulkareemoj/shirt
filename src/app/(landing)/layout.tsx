@@ -1,5 +1,5 @@
-import Navbar from "~/components/navbar";
-import SiteFooter from "~/components/site-footer";
+import Navbar from "~/components/shared/navbar";
+import SiteFooter from "~/components/shared/site-footer";
 
 export default function LandingLayout({
   children,

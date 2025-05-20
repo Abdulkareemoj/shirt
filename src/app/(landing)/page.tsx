@@ -9,11 +9,11 @@ import {
   Upload,
 } from "lucide-react";
 import { Button } from "~/components/ui/button";
-import LandingHero from "~/components/landing-hero";
-import FeatureCard from "~/components/feature-card";
-import TestimonialCard from "~/components/testimonial-card";
-import PricingCard from "~/components/pricing-card";
-import ShirtPreview from "~/components/shirt-preview";
+import LandingHero from "~/components/shared/landing-hero";
+import FeatureCard from "~/components/shared/feature-card";
+import TestimonialCard from "~/components/shared/testimonial-card";
+import PricingCard from "~/components/shared/pricing-card";
+import ShirtPreview from "~/components/canvas/shirt-preview";
 import { CookieConsent } from "~/components/cookie-consent";
 
 export default function IndexPage() {

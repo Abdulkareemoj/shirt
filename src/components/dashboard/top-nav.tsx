@@ -3,8 +3,8 @@
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ThemeToggle } from "~/components/theme-toggle";
-import LoginBtn from "~/components/LoginBtn";
+import { ThemeToggle } from "~/components/shared/theme-toggle";
+import LoginBtn from "~/components/shared/LoginBtn";
 
 interface BreadcrumbItem {
   label: string;

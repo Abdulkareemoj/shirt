@@ -2,7 +2,7 @@ import "~/styles/globals.css";
 
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
-import { ThemeProvider } from "~/components/theme-provider";
+import { ThemeProvider } from "~/components/shared/theme-provider";
 const metadata: Metadata = {
   title: "3D Shirt Customizer",
   description:

@@ -1,4 +1,4 @@
-import ShirtCustomizer from "~/components/shirt-customizer";
+import ShirtCustomizer from "~/components/canvas/shirt-customizer";
 
 export default function CustomizePage() {
   return (
