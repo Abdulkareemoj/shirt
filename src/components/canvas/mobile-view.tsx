@@ -658,7 +658,7 @@ export default function MobileView() {
         ))}
         <motion.button
           className="bg-white border rounded-md px-3 py-1 text-sm shadow-sm hover:bg-muted/50 transition-colors"
-          onClick={() => setIsRotating(!isRotating)}
+          onClick={() => setField("isRotating", !isRotating)}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >

@@ -31,7 +31,7 @@ import {
 import { motion, AnimatePresence } from "motion/react";
 import ColorPicker from "../color-picker";
 import Shirt from "./shirt";
-import Loader from "../shared/loader";
+import Loader from "../landing/loader";
 import SceneCamera from "./scene-camera";
 import Link from "next/link";
 import { Download, RotateCcw, Save, Upload } from "lucide-react";
@@ -460,7 +460,7 @@ export default function DesktopView() {
           ))}
           <motion.button
             className="bg-white border rounded-md px-3 py-1 text-sm shadow-sm hover:bg-muted/50 transition-colors"
-            onClick={() => setIsRotating(!isRotating)}
+            onClick={() => setField("isRotating", !isRotating)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
