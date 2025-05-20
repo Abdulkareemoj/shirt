@@ -15,9 +15,6 @@ export async function middleware(request: NextRequest) {
   // Define admin routes
   const isAdminRoute = request.nextUrl.pathname.startsWith("/admin");
 
-  // Define designer routes
-  const isDesignerRoute = request.nextUrl.pathname.startsWith("/designer");
-
   // Define auth routes
   const isAuthRoute =
     request.nextUrl.pathname.startsWith("/signin") ||
