@@ -1,5 +1,5 @@
 "use client";
-
+import { useFontStore } from "~/lib/stores/useFontStore";
 import { useRef, useMemo, useEffect, type JSX } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Decal, useTexture, Text } from "@react-three/drei";
@@ -58,6 +58,8 @@ export default function Shirt({
   lastColorChange = 0,
 }: ShirtProps) {
   const group = useRef<THREE.Group>(null);
+
+  const font = useFontStore((state) => state.font);
 
   // Create a detailed shirt model using Three.js geometries
   const { nodes, materials } = useDetailedShirtModel();
@@ -278,7 +280,7 @@ export default function Shirt({
 
           {/* Front number text */}
           <AnimatedGroup
-            scale={textSprings.scale.to((x, y, z) => [x, y, z]) as any}
+            scale={textSprings.scale as unknown as [number, number, number]}
           >
             <Text
               position={[0, -0.1, 0.15]}
@@ -289,7 +291,7 @@ export default function Shirt({
               anchorY="middle"
               outlineWidth={hasOutline ? 0.01 : 0}
               outlineColor={outlineColor}
-              font="https://threejs.org/examples/fonts/helvetiker_bold.typeface.json"
+              font={font || undefined}
               material-opacity={textSprings.opacity.to((o) => o) as any}
               material-transparent
             >
@@ -299,7 +301,7 @@ export default function Shirt({
 
           {/* Team name text */}
           <AnimatedGroup
-            scale={textSprings.scale.to((x, y, z) => [x, y, z]) as any}
+            scale={textSprings.scale as unknown as [number, number, number]}
           >
             <Text
               position={getTextPosition()}
@@ -311,7 +313,7 @@ export default function Shirt({
               anchorY="middle"
               outlineWidth={hasOutline ? 0.005 : 0}
               outlineColor={outlineColor}
-              font="https://threejs.org/examples/fonts/helvetiker_bold.typeface.json"
+              font={font || undefined}
 
               // curveRadius={
               //   textStyle === "curved" ? 0.5 : textStyle === "arched" ? -0.5 : 0
@@ -323,7 +325,7 @@ export default function Shirt({
 
           {/* Back number text */}
           <AnimatedGroup
-            scale={textSprings.scale.to((x, y, z) => [x, y, z]) as any}
+            scale={textSprings.scale as unknown as [number, number, number]}
           >
             <Text
               position={[0, -0.1, 0.15]}
@@ -334,7 +336,7 @@ export default function Shirt({
               anchorY="middle"
               outlineWidth={hasOutline ? 0.01 : 0}
               outlineColor={outlineColor}
-              font="https://threejs.org/examples/fonts/helvetiker_bold.typeface.json"
+              font={font || undefined}
               material-opacity={textSprings.opacity.to((o) => o) as any}
               material-transparent
             >
