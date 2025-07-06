@@ -19,8 +19,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <head />
+    <html lang="en" suppressHydrationWarning>
       <body className={geist.className}>
         <div className="flex min-h-screen flex-col">
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
