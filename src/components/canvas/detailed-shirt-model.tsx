@@ -1,4 +1,3 @@
-// Custom hook to create a detailed shirt model
 import { useMemo } from "react";
 import * as THREE from "three";
 
@@ -15,84 +14,7 @@ export function useDetailedShirtModel(): {
     SleeveMaterial: THREE.MeshStandardMaterial;
   };
 } {
-  // Create geometries for a more detailed shirt
-  const nodes = useMemo(() => {
-    // Create a more detailed shirt body
-    const shirtGeometry = new THREE.CylinderGeometry(0.3, 0.25, 0.8, 16, 3);
-    shirtGeometry.translate(0, 0, 0);
-    // Modify vertices to create a more realistic shirt shape
-    const shirtPositionAttribute = shirtGeometry.getAttribute("position");
-    const shirtVertices = shirtPositionAttribute.array as Float32Array;
-
-    for (let i = 0; i < shirtVertices.length; i += 3) {
-      const x = shirtVertices[i]!;
-      const y = shirtVertices[i + 1]!;
-      const z = shirtVertices[i + 2]!;
-
-      let newX = x;
-      let newZ = z;
-
-      if (y < 0) {
-        const factor = 0.9 + (y + 0.4) * 0.25;
-        newX = x * factor;
-        newZ = z * factor;
-      }
-
-      if (z > 0) {
-        newZ += 0.05 * Math.sin((y + 0.4) * Math.PI);
-      }
-
-      shirtVertices[i] = newX;
-      shirtVertices[i + 2] = newZ;
-    }
-
-    shirtPositionAttribute.needsUpdate = true;
-    shirtGeometry.computeVertexNormals();
-
-    // Create a collar
-    const collarGeometry = new THREE.TorusGeometry(
-      0.12,
-      0.03,
-      16,
-      32,
-      Math.PI * 1.5
-    );
-    collarGeometry.rotateX(Math.PI / 2);
-    collarGeometry.translate(0, 0.35, 0);
-
-    // Create left sleeve
-    const leftSleeveGeometry = new THREE.CylinderGeometry(
-      0.08,
-      0.06,
-      0.25,
-      8,
-      1,
-      true
-    );
-    leftSleeveGeometry.rotateZ(Math.PI / 3);
-    leftSleeveGeometry.translate(-0.25, 0.2, 0);
-
-    // Create right sleeve
-    const rightSleeveGeometry = new THREE.CylinderGeometry(
-      0.08,
-      0.06,
-      0.25,
-      8,
-      1,
-      true
-    );
-    rightSleeveGeometry.rotateZ(-Math.PI / 3);
-    rightSleeveGeometry.translate(0.25, 0.2, 0);
-
-    return {
-      Shirt: { geometry: shirtGeometry } as unknown as THREE.Mesh,
-      Collar: { geometry: collarGeometry } as unknown as THREE.Mesh,
-      LeftSleeve: { geometry: leftSleeveGeometry } as unknown as THREE.Mesh,
-      RightSleeve: { geometry: rightSleeveGeometry } as unknown as THREE.Mesh,
-    };
-  }, []);
-
-  // Create materials
+  // Create materials once
   const materials = useMemo(() => {
     return {
       ShirtMaterial: new THREE.MeshStandardMaterial({
@@ -112,6 +34,84 @@ export function useDetailedShirtModel(): {
       }),
     };
   }, []);
+
+  // Create geometries and meshes once
+  const nodes = useMemo(() => {
+    // Shirt geometry
+    const shirtGeometry = new THREE.CylinderGeometry(0.35, 0.3, 1.1, 24, 6);
+
+    // Modify vertices for more realistic shape
+    const positionAttr = shirtGeometry.getAttribute("position");
+    const vertices = positionAttr.array as Float32Array;
+
+    for (let i = 0; i < vertices.length; i += 3) {
+      const x = vertices[i]!;
+      const y = vertices[i + 1]!;
+      const z = vertices[i + 2]!;
+
+      let newX = x;
+      let newZ = z;
+
+      if (y < 0) {
+        const factor = 0.9 + (y + 0.4) * 0.25;
+        newX = x * factor;
+        newZ = z * factor;
+      }
+
+      if (z > 0) {
+        newZ += 0.05 * Math.sin((y + 0.4) * Math.PI);
+      }
+
+      vertices[i] = newX;
+      vertices[i + 2] = newZ;
+    }
+
+    positionAttr.needsUpdate = true;
+    shirtGeometry.computeVertexNormals();
+
+    // Collar geometry
+    const collarGeometry = new THREE.TorusGeometry(0.15, 0.025, 16, 32);
+    collarGeometry.rotateX(Math.PI / 2);
+    collarGeometry.translate(0, 0.55, 0);
+
+    // Left sleeve geometry
+    const leftSleeveGeometry = new THREE.CylinderGeometry(
+      0.12,
+      0.1,
+      0.25,
+      16,
+      2,
+      true
+    );
+    leftSleeveGeometry.rotateZ(Math.PI / 2.5);
+    leftSleeveGeometry.translate(-0.38, 0.3, 0);
+
+    // Right sleeve geometry
+    const rightSleeveGeometry = new THREE.CylinderGeometry(
+      0.12,
+      0.1,
+      0.25,
+      16,
+      2,
+      true
+    );
+    rightSleeveGeometry.rotateZ(-Math.PI / 2.5);
+    rightSleeveGeometry.translate(0.38, 0.3, 0);
+
+    // Create meshes with materials
+    const Shirt = new THREE.Mesh(shirtGeometry, materials.ShirtMaterial);
+    const Collar = new THREE.Mesh(collarGeometry, materials.CollarMaterial);
+    const LeftSleeve = new THREE.Mesh(
+      leftSleeveGeometry,
+      materials.SleeveMaterial
+    );
+    const RightSleeve = new THREE.Mesh(
+      rightSleeveGeometry,
+      materials.SleeveMaterial
+    );
+
+    return { Shirt, Collar, LeftSleeve, RightSleeve };
+  }, [materials]);
 
   return { nodes, materials };
 }

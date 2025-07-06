@@ -58,6 +58,7 @@ import {
 } from "lucide-react";
 import { cn } from "~/lib/utils";
 import { useColorAnimation } from "~/hooks/use-color-animation";
+import FontLoaderComponent from "./font-loader";
 
 // Mobile navigation tabs
 const mobileTabs = [
@@ -125,6 +126,8 @@ export default function MobileView() {
           camera={{ position: [0, 0, 2.5], fov: 25 }}
           className="w-full h-full"
         >
+          <FontLoaderComponent fontUrl="/fonts/helvetiker_regular.typeface.json" />
+
           <color
             attach="background"
             args={[showBackdrop ? "#f0f0f0" : "transparent"]}
@@ -208,7 +211,7 @@ export default function MobileView() {
       {/* Colors Sheet */}
       <Sheet
         open={activeSheet === "colors"}
-        onOpenChange={(open) => !open && setActiveSheet(null)}
+        onOpenChange={(open) => !open && activeSheet(null)}
       >
         <SheetContent side="bottom" className="h-[70vh] rounded-t-xl">
           <SheetHeader className="border-b pb-2 mb-4">
@@ -217,7 +220,7 @@ export default function MobileView() {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => setActiveSheet(null)}
+                onClick={() => activeSheet(null)}
               >
                 <X className="h-4 w-4" />
               </Button>
@@ -340,7 +343,7 @@ export default function MobileView() {
       {/* Number Sheet */}
       <Sheet
         open={activeSheet === "number"}
-        onOpenChange={(open) => !open && setActiveSheet(null)}
+        onOpenChange={(open) => !open && activeSheet(null)}
       >
         <SheetContent side="bottom" className="h-[70vh] rounded-t-xl">
           <SheetHeader className="border-b pb-2 mb-4">
@@ -349,7 +352,7 @@ export default function MobileView() {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => setActiveSheet(null)}
+                onClick={() => activeSheet(null)}
               >
                 <X className="h-4 w-4" />
               </Button>
@@ -474,7 +477,7 @@ export default function MobileView() {
       {/* Logos Sheet */}
       <Sheet
         open={activeSheet === "logos"}
-        onOpenChange={(open) => !open && setActiveSheet(null)}
+        onOpenChange={(open) => !open && activeSheet(null)}
       >
         <SheetContent side="bottom" className="h-[70vh] rounded-t-xl">
           <SheetHeader className="border-b pb-2 mb-4">
@@ -483,7 +486,7 @@ export default function MobileView() {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => setActiveSheet(null)}
+                onClick={() => activeSheet(null)}
               >
                 <X className="h-4 w-4" />
               </Button>
@@ -566,7 +569,7 @@ export default function MobileView() {
       {/* Info Sheet */}
       <Sheet
         open={activeSheet === "info"}
-        onOpenChange={(open) => !open && setActiveSheet(null)}
+        onOpenChange={(open) => !open && activeSheet(null)}
       >
         <SheetContent side="bottom" className="h-[70vh] rounded-t-xl">
           <SheetHeader className="border-b pb-2 mb-4">
@@ -575,7 +578,7 @@ export default function MobileView() {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => setActiveSheet(null)}
+                onClick={() => activeSheet(null)}
               >
                 <X className="h-4 w-4" />
               </Button>

@@ -36,6 +36,7 @@ import SceneCamera from "./scene-camera";
 import Link from "next/link";
 import { Download, RotateCcw, Save, Upload } from "lucide-react";
 import { useColorAnimation } from "~/hooks/use-color-animation";
+import FontLoaderComponent from "./font-loader";
 
 export default function DesktopView() {
   useColorAnimation();
@@ -391,6 +392,8 @@ export default function DesktopView() {
           className="w-full h-full bg-[#f8f9fa]"
           shadows
         >
+          <FontLoaderComponent fontUrl="/fonts/helvetiker_regular.typeface.json" />
+
           <color attach="background" args={["#f8f9fa"]} />
           <ambientLight intensity={0.5} />
           <directionalLight position={[1, 1, 1]} intensity={1} castShadow />
