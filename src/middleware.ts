@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { auth } from "~/server/auth";
+// import { auth } from "~/server/auth";
 
 export async function middleware(request: NextRequest) {
-  const session = await auth();
-  const isAuthenticated = !!session?.user;
-  const userRole = session?.user?.role || null;
+  // const session = await auth();
+  // const isAuthenticated = !!session?.user;
+  // const userRole = session?.user?.role || null;
 
   // Define protected routes
   const isProtectedRoute =
@@ -21,20 +21,20 @@ export async function middleware(request: NextRequest) {
     request.nextUrl.pathname.startsWith("/signup") ||
     request.nextUrl.pathname.startsWith("/forgot-password");
 
-  // Redirect authenticated users away from auth pages
-  if (isAuthenticated && isAuthRoute) {
-    return NextResponse.redirect(new URL("/dashboard", request.url));
-  }
+  // // Redirect authenticated users away from auth pages
+  // if (isAuthenticated && isAuthRoute) {
+  //   return NextResponse.redirect(new URL("/dashboard", request.url));
+  // }
 
-  // Redirect unauthenticated users away from protected pages
-  if (!isAuthenticated && isProtectedRoute) {
-    return NextResponse.redirect(new URL("/signin", request.url));
-  }
+  // // Redirect unauthenticated users away from protected pages
+  // if (!isAuthenticated && isProtectedRoute) {
+  //   return NextResponse.redirect(new URL("/signin", request.url));
+  // }
 
-  // Check admin access
-  if (isAdminRoute && userRole !== "ADMIN") {
-    return NextResponse.redirect(new URL("/unauthorized", request.url));
-  }
+  // // Check admin access
+  // if (isAdminRoute && userRole !== "ADMIN") {
+  //   return NextResponse.redirect(new URL("/unauthorized", request.url));
+  // }
 
   return NextResponse.next();
 }

@@ -23,7 +23,7 @@ import {
   FormLabel,
   FormMessage,
 } from "~/components/ui/form";
-import { forgotPassword } from "../auth-actions";
+// import { forgotPassword } from "../auth-actions";
 import {
   schemaForgotPassword,
   type ForgotPasswordFormValues,
@@ -51,25 +51,25 @@ export default function ForgotPassword() {
   async function onSubmit(values: ForgotPasswordFormValues) {
     setIsLoading(true);
 
-    try {
-      const result = await forgotPassword(values);
+    // try {
+    //   const result = await forgotPassword(values);
 
-      setStatus({
-        type: result.success ? "success" : "error",
-        message: result.message,
-      });
+    //   setStatus({
+    //     type: result.success ? "success" : "error",
+    //     message: result.message,
+    //   });
 
-      if (result.success) {
-        form.reset();
-      }
-    } catch (error) {
-      setStatus({
-        type: "error",
-        message: "An unexpected error occurred. Please try again.",
-      });
-    } finally {
-      setIsLoading(false);
-    }
+    //   if (result.success) {
+    //     form.reset();
+    //   }
+    // } catch (error) {
+    //   setStatus({
+    //     type: "error",
+    //     message: "An unexpected error occurred. Please try again.",
+    //   });
+    // } finally {
+    //   setIsLoading(false);
+    // }
   }
 
   return (

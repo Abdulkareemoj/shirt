@@ -24,7 +24,7 @@ import {
   FormLabel,
   FormMessage,
 } from "~/components/ui/form";
-import { loginUser } from "../auth-actions";
+// import { loginUser } from "../auth-actions";
 import { schemaLogin, type SignInFormValues } from "~/lib/schemas";
 import { signIn } from "next-auth/react";
 // Infer the type from the schema
@@ -48,21 +48,21 @@ export default function SignIn() {
     setIsLoading(true);
     setServerError(null);
 
-    try {
-      const result = await loginUser(values);
+    // try {
+    //   const result = await loginUser(values);
 
-      if (!result.success) {
-        setServerError(result.message);
-        return;
-      }
+    //   if (!result.success) {
+    //     setServerError(result.message);
+    //     return;
+    //   }
 
-      // Redirect to dashboard on success
-      router.push("/dashboard");
-    } catch (error) {
-      setServerError("An unexpected error occurred. Please try again.");
-    } finally {
-      setIsLoading(false);
-    }
+    //   // Redirect to dashboard on success
+    //   router.push("/dashboard");
+    // } catch (error) {
+    //   setServerError("An unexpected error occurred. Please try again.");
+    // } finally {
+    //   setIsLoading(false);
+    // }
   }
 
   // Handle OAuth sign in
@@ -132,7 +132,7 @@ export default function SignIn() {
 
               <div className="relative my-4">
                 <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-gray-300"></div>
+                  <div className="w-full border-t border-gray-300" />
                 </div>
                 <div className="relative flex justify-center text-sm">
                   <span className="px-2 bg-background text-muted-foreground">

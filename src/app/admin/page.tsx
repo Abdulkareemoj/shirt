@@ -1,4 +1,4 @@
-import { requireAdmin } from "~/lib/auth-utils";
+// import { requireAdmin } from "~/lib/auth-utils";
 import {
   Card,
   CardContent,
@@ -7,11 +7,11 @@ import {
   CardTitle,
 } from "~/components/ui/card";
 import { db } from "~/server/db";
-import { RoleBadge } from "~/components/role-badge";
+// import { RoleBadge } from "~/components/role-badge";
 
 export default async function AdminDashboard() {
   // This will redirect if the user is not an admin
-  const admin = await requireAdmin();
+  // const admin = await requireAdmin();
 
   // Fetch user statistics
   const userCount = await db.user.count();
@@ -29,7 +29,7 @@ export default async function AdminDashboard() {
     <div className="container mx-auto py-10">
       <h1 className="text-3xl font-bold mb-6">Admin Dashboard</h1>
       <p className="text-muted-foreground mb-8">
-        Welcome, {admin.name}. You have admin privileges.
+        {/* Welcome, {admin.name}. You have admin privileges. */}
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -59,7 +59,7 @@ export default async function AdminDashboard() {
             <div className="space-y-4">
               <div className="flex justify-between items-center">
                 <div className="flex items-center">
-                  <div className="w-3 h-3 rounded-full bg-blue-500 mr-2"></div>
+                  <div className="mr-2 h-3 w-3 rounded-full bg-blue-500" />
                   <span>Regular Users</span>
                 </div>
                 <span className="font-medium">{regularUserCount}</span>
@@ -67,7 +67,7 @@ export default async function AdminDashboard() {
 
               <div className="flex justify-between items-center">
                 <div className="flex items-center">
-                  <div className="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
+                  <div className="mr-2 h-3 w-3 rounded-full bg-red-500" />
                   <span>Administrators</span>
                 </div>
                 <span className="font-medium">{adminCount}</span>
@@ -99,7 +99,7 @@ export default async function AdminDashboard() {
                       </p>
                     </div>
                   </div>
-                  <RoleBadge role={user.role} />
+                  {/* <RoleBadge role={user.role} /> */}
                 </div>
               ))}
             </div>

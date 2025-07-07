@@ -23,7 +23,7 @@ import {
   FormLabel,
   FormMessage,
 } from "~/components/ui/form";
-import { registerUser } from "../auth-actions";
+// import { registerUser } from "../auth-actions";
 import { schemaRegister, type SignUpFormValues } from "~/lib/schemas";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
@@ -48,21 +48,21 @@ export default function SignUp() {
     setIsLoading(true);
     setServerError(null);
 
-    try {
-      const result = await registerUser(values);
+    // try {
+    //   const result = await registerUser(values);
 
-      if (!result.success) {
-        setServerError(result.message);
-        return;
-      }
+    //   if (!result.success) {
+    //     setServerError(result.message);
+    //     return;
+    //   }
 
-      // Redirect to dashboard on success
-      router.push("/dashboard");
-    } catch (error) {
-      setServerError("An unexpected error occurred. Please try again.");
-    } finally {
-      setIsLoading(false);
-    }
+    //   // Redirect to dashboard on success
+    //   router.push("/dashboard");
+    // } catch (error) {
+    //   setServerError("An unexpected error occurred. Please try again.");
+    // } finally {
+    //   setIsLoading(false);
+    // }
   }
 
   // Handle OAuth sign in

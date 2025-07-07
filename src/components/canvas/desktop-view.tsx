@@ -1,5 +1,5 @@
 import {
-  handleDownload,
+  // handleDownload,
   handleLogoUpload,
   handleSaveDesign,
   handleViewChange,
@@ -75,7 +75,10 @@ export default function DesktopView() {
               <Save className="h-4 w-4 mr-2" />
               Save
             </Button>
-            <Button size="sm" onClick={handleDownload}>
+            <Button
+              size="sm"
+              // onClick={handleDownload}
+            >
               <Download className="h-4 w-4 mr-2" />
               Download
             </Button>

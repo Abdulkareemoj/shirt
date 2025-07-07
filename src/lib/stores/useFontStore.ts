@@ -1,6 +1,6 @@
 import { create } from "zustand";
-import * as THREE from "three";
-import { Font } from "three/examples/jsm/loaders/FontLoader";
+// import * as THREE from "three";
+import type { Font } from "three/examples/jsm/loaders/FontLoader.js";
 
 interface FontStore {
   font: Font | null;

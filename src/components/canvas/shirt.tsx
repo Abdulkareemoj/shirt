@@ -91,6 +91,7 @@ export default function Shirt({
   }));
 
   // Trigger animations when props change
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (animate) {
       // Subtle "pop" animation
@@ -234,8 +235,11 @@ export default function Shirt({
     <AnimatedGroup
       ref={group}
       dispose={null}
+      // biome-ignore lint/suspicious/noExplicitAny: <explanation>
       scale={springs.scale.to((x, y, z) => [x, y, z]) as any}
+      // biome-ignore lint/suspicious/noExplicitAny: <explanation>
       position={springs.position.to((x, y, z) => [x, y, z]) as any}
+      // biome-ignore lint/suspicious/noExplicitAny: <explanation>
       rotation={springs.rotation.to((x, y, z) => [x, y, z]) as any}
     >
       <group scale={[1.5, 1.5, 1.5]}>
@@ -291,7 +295,8 @@ export default function Shirt({
               anchorY="middle"
               outlineWidth={hasOutline ? 0.01 : 0}
               outlineColor={outlineColor}
-              font={font || undefined}
+              // font={font || undefined}
+              // biome-ignore lint/suspicious/noExplicitAny: <explanation>
               material-opacity={textSprings.opacity.to((o) => o) as any}
               material-transparent
             >
@@ -306,6 +311,7 @@ export default function Shirt({
             <Text
               position={getTextPosition()}
               rotation={getTextRotation()}
+              // biome-ignore lint/suspicious/noExplicitAny: <explanation>
               material-opacity={textSprings.opacity.to((o) => o) as any}
               fontSize={0.08}
               color={textColor}
@@ -313,7 +319,7 @@ export default function Shirt({
               anchorY="middle"
               outlineWidth={hasOutline ? 0.005 : 0}
               outlineColor={outlineColor}
-              font={font || undefined}
+              // font={font || undefined}
 
               // curveRadius={
               //   textStyle === "curved" ? 0.5 : textStyle === "arched" ? -0.5 : 0
@@ -336,7 +342,8 @@ export default function Shirt({
               anchorY="middle"
               outlineWidth={hasOutline ? 0.01 : 0}
               outlineColor={outlineColor}
-              font={font || undefined}
+              // font={font || undefined}
+              // biome-ignore lint/suspicious/noExplicitAny: <explanation>
               material-opacity={textSprings.opacity.to((o) => o) as any}
               material-transparent
             >

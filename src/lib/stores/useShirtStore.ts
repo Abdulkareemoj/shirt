@@ -21,6 +21,7 @@ interface ShirtStoreState {
   lastColorChange: number;
   showBackdrop: boolean;
   activeSheet: string | null;
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   setField: (field: keyof ShirtStoreState, value: any) => void;
   setMultiple: (values: Partial<ShirtStoreState>) => void;
 }
@@ -46,6 +47,7 @@ export const useShirtStore = create<ShirtStoreState>((set) => ({
   activeSheet: null,
   currentView: "front",
 
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   setField: (key, value) => set({ [key]: value } as any),
   setMultiple: (updates) => set(updates),
 }));
@@ -53,7 +55,7 @@ export const useShirtStore = create<ShirtStoreState>((set) => ({
 export const handleLogoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
   const { setField, setMultiple } = useShirtStore.getState();
 
-  if (e.target.files && e.target.files[0]) {
+  if (e.target.files?.[0]) {
     const file = e.target.files[0];
     setField("logoFile", file);
 

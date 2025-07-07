@@ -176,7 +176,7 @@ export default function MobileView() {
       <div className="bg-white border-t">
         <div className="flex justify-around">
           {mobileTabs.map((tab) => (
-            <button
+            <Button
               key={tab.id}
               className={cn(
                 "flex flex-1 flex-col items-center justify-center py-3",
@@ -186,7 +186,7 @@ export default function MobileView() {
             >
               {tab.icon}
               <span className="text-xs mt-1">{tab.label}</span>
-            </button>
+            </Button>
           ))}
         </div>
       </div>
@@ -211,7 +211,7 @@ export default function MobileView() {
       {/* Colors Sheet */}
       <Sheet
         open={activeSheet === "colors"}
-        onOpenChange={(open) => !open && activeSheet(null)}
+        onOpenChange={(open) => !open && setField("activeSheet", null)}
       >
         <SheetContent side="bottom" className="h-[70vh] rounded-t-xl">
           <SheetHeader className="border-b pb-2 mb-4">
@@ -220,7 +220,7 @@ export default function MobileView() {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => activeSheet(null)}
+                onClick={() => setField("activeSheet", null)}
               >
                 <X className="h-4 w-4" />
               </Button>
@@ -343,7 +343,7 @@ export default function MobileView() {
       {/* Number Sheet */}
       <Sheet
         open={activeSheet === "number"}
-        onOpenChange={(open) => !open && activeSheet(null)}
+        onOpenChange={(open) => !open && setField("activeSheet", null)}
       >
         <SheetContent side="bottom" className="h-[70vh] rounded-t-xl">
           <SheetHeader className="border-b pb-2 mb-4">
@@ -352,7 +352,7 @@ export default function MobileView() {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => activeSheet(null)}
+                onClick={() => setField("activeSheet", null)}
               >
                 <X className="h-4 w-4" />
               </Button>
@@ -477,7 +477,7 @@ export default function MobileView() {
       {/* Logos Sheet */}
       <Sheet
         open={activeSheet === "logos"}
-        onOpenChange={(open) => !open && activeSheet(null)}
+        onOpenChange={(open) => !open && setField("activeSheet", null)}
       >
         <SheetContent side="bottom" className="h-[70vh] rounded-t-xl">
           <SheetHeader className="border-b pb-2 mb-4">
@@ -486,7 +486,7 @@ export default function MobileView() {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => activeSheet(null)}
+                onClick={() => setField("activeSheet", null)}
               >
                 <X className="h-4 w-4" />
               </Button>
@@ -496,8 +496,9 @@ export default function MobileView() {
             <div className="space-y-6 p-4">
               <div>
                 <h3 className="font-medium mb-2">Upload Logo</h3>
+                {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
                 <div
-                  className="border-2 border-dashed rounded-md p-6 text-center cursor-pointer hover:bg-muted/50 transition-colors"
+                  className="cursor-pointer rounded-md border-2 border-dashed p-6 text-center transition-colors hover:bg-muted/50"
                   onClick={() => fileInputRef.current?.click()}
                 >
                   <input
@@ -569,7 +570,7 @@ export default function MobileView() {
       {/* Info Sheet */}
       <Sheet
         open={activeSheet === "info"}
-        onOpenChange={(open) => !open && activeSheet(null)}
+        onOpenChange={(open) => !open && setField("activeSheet", null)}
       >
         <SheetContent side="bottom" className="h-[70vh] rounded-t-xl">
           <SheetHeader className="border-b pb-2 mb-4">
@@ -578,7 +579,7 @@ export default function MobileView() {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => activeSheet(null)}
+                onClick={() => setField("activeSheet", null)}
               >
                 <X className="h-4 w-4" />
               </Button>
