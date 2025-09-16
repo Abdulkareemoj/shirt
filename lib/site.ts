@@ -1,6 +1,4 @@
-import { env } from "~/env";
-
-const site_url = env.NEXT_PUBLIC_APP_URL;
+const site_url = process.env.NEXT_PUBLIC_APP_URL;
 
 export const siteConfig = {
   name: "onashirt",
