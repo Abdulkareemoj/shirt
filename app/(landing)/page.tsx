@@ -107,7 +107,7 @@ export default function IndexPage() {
                 </ul>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button asChild size="lg">
-                    <Link href="/customize">Try It Now</Link>
+                    <Link href="/customizer">Try It Now</Link>
                   </Button>
                   <Button variant="outline" size="lg">
                     <Link href="/gallery">View Gallery</Link>
