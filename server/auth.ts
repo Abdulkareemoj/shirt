@@ -14,7 +14,6 @@ export const auth = betterAuth({
   }),
   plugins: [
     admin(),
-    oneTap(),
     username({
       minUsernameLength: 5,
       maxUsernameLength: 25,
