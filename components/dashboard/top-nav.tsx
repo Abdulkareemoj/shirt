@@ -3,7 +3,7 @@
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ThemeToggle } from "~/components/shared/theme-toggle";
+import { ModeToggle } from "~/components/shared/theme-toggle";
 import UserDropdown from "./user-button";
 
 interface BreadcrumbItem {
@@ -42,7 +42,7 @@ export default function TopNav() {
       </div>
 
       <div className="flex items-center gap-2 sm:gap-4 ml-auto sm:ml-0">
-        <UserDropdown /> <ThemeToggle />
+        <UserDropdown /> <ModeToggle />
       </div>
     </nav>
   );

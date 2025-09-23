@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { Button } from "~/components/ui/button";
 import { Menu, X, Shirt } from "lucide-react";
-import { UserButton } from "@daveyplate/better-auth-ui";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
