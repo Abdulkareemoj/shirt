@@ -18,12 +18,22 @@ import FeedbackDialog from "~/components/admin/feedback-dialog";
 import { CircleGauge } from "lucide-react";
 import type { ReactNode } from "react";
 import { Toaster } from "~/components/ui/sonner";
+import { auth } from "~/server/auth";
+import { headers } from "next/headers";
+import { notFound } from "next/navigation";
 
 interface AdminLayoutProps {
   children: ReactNode;
 }
 
-export default function AdminLayout({ children }: AdminLayoutProps) {
+export default async function AdminLayout({ children }: AdminLayoutProps) {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  if (!session || session.user.role !== "admin") {
+    return notFound();
+  }
   return (
     <SidebarProvider>
       <AppSidebar />
