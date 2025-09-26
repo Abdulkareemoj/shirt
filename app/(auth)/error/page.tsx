@@ -13,7 +13,6 @@ import {
 } from "~/components/ui/card";
 import { Button } from "~/components/ui/button";
 import { AlertCircle } from "lucide-react";
-import { metadata } from "../../admin/users/page";
 
 export default function AuthError() {
   // const searchParams = useSearchParams();

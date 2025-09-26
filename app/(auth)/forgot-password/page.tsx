@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import type { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import {
@@ -28,6 +27,12 @@ import {
   forgotPasswordSchema,
   type ForgotPasswordFormValues,
 } from "~/lib/schemas";
+
+export const metadata = {
+  title: "Forgot Password - Onashirt",
+  description:
+    "Reset your Onashirt account password by entering your email address.",
+};
 
 export default function ForgotPassword() {
   const [status, setStatus] = useState<{

@@ -35,6 +35,12 @@ import { X } from "lucide-react";
 // Infer the type from the schema
 type SignUpFormValues = z.infer<typeof signUpSchema>;
 
+export const metadata = {
+  title: "Sign Up - Onashirt",
+  description:
+    "Create an account to start designing custom shirts with Onashirt.",
+};
+
 export default function SignUp() {
   const [serverError, setServerError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);

@@ -29,6 +29,11 @@ import {
 } from "~/components/ui/form";
 import { signInSchema, type SignInFormValues } from "~/lib/schemas";
 
+export const metadata = {
+  title: "Sign In - Onashirt",
+  description: "Sign in to your Onashirt account to design custom shirts.",
+};
+
 export default function SignIn() {
   const [serverError, setServerError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
