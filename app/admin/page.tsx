@@ -19,7 +19,7 @@ import {
   DollarSign,
 } from "lucide-react";
 
-export const metadata = {
+const metadata = {
   title: "Home | Admin Dashboard",
   description:
     "Welcome to your admin dashboard. Here you can manage your content, view analytics, and perform various administrative tasks with ease.",

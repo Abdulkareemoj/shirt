@@ -1,5 +1,3 @@
-import "~/styles/globals.css";
-
 import type { Metadata } from "next";
 
 const metadata: Metadata = {
@@ -9,7 +7,7 @@ const metadata: Metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-export default function ShirtLayout({
+export default function ClientLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return <div className="flex min-h-screen flex-col">{children}</div>;
