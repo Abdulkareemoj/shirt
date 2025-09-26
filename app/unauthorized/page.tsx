@@ -10,6 +10,11 @@ import {
 import { Button } from "~/components/ui/button";
 import { ShieldAlert } from "lucide-react";
 
+export const metadata = {
+  title: "Unauthorized Access ",
+  description: "You do not have permission to access this page.",
+};
+
 export default function Unauthorized() {
   return (
     <main className="min-h-screen flex items-center justify-center px-4 py-12 sm:px-6 lg:px-8">

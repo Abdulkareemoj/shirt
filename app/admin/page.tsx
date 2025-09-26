@@ -19,6 +19,12 @@ import {
   DollarSign,
 } from "lucide-react";
 
+export const metadata = {
+  title: "Home | Admin Dashboard",
+  description:
+    "Welcome to your admin dashboard. Here you can manage your content, view analytics, and perform various administrative tasks with ease.",
+};
+
 export default function AdminHome() {
   const stats = [
     {

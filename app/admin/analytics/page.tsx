@@ -49,6 +49,12 @@ import {
   Download,
 } from "lucide-react";
 
+import type { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Analytics | Admin Dashboard",
+  description:
+    "Detailed insights into your website performance and user behavior",
+};
 export default function AdminAnalytics() {
   // Sample data for analytics
   const trafficData = [

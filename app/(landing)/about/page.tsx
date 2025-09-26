@@ -3,6 +3,13 @@ import { ArrowLeft } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent } from "~/components/ui/card";
 import { siteConfig } from "~/lib/site";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About Us",
+  description: `Learn more about ${siteConfig.name} and how we help you put something interesting on a shirt.`,
+};
+
 export default function AboutPage() {
   return (
     <div className="max-w-5xl mx-auto px-4 py-12">

@@ -59,7 +59,11 @@ import {
   Clock,
 } from "lucide-react";
 import { toast } from "sonner";
-
+import type { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Reports | Admin Dashboard",
+  description: "Manage and generate automated reports for your dashboard",
+};
 export default function AdminReports() {
   interface Report {
     id: string;

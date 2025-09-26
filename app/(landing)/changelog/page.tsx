@@ -3,6 +3,14 @@ import { ArrowLeft, Tag, Bug, Sparkles, Zap, AlertCircle } from "lucide-react";
 import { Badge } from "~/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import { siteConfig } from "~/lib/site";
+
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Changelog",
+  description: `Stay updated with the latest changes and improvements to ${siteConfig.name}.`,
+};
+
 export default function ChangelogPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-12">

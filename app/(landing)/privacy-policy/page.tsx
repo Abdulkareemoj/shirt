@@ -1,6 +1,14 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { siteConfig } from "~/lib/site";
+
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description: `Read the privacy policy of ${siteConfig.name} to understand how we collect, use, and protect your personal data.`,
+};
+
 export default function PrivacyPolicy() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">

@@ -12,6 +12,13 @@ import { Progress } from "~/components/ui/progress";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import { siteConfig } from "~/lib/site";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Roadmap",
+  description: `Explore the product roadmap of ${siteConfig.name} and see what's coming next in our development plans.`,
+};
+
 export default function RoadmapPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-12">
