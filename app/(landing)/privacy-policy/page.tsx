@@ -4,7 +4,7 @@ import { siteConfig } from "~/lib/site";
 
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "Privacy Policy",
   description: `Read the privacy policy of ${siteConfig.name} to understand how we collect, use, and protect your personal data.`,
 };

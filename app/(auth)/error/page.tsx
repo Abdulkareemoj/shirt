@@ -14,6 +14,14 @@ import {
 import { Button } from "~/components/ui/button";
 import { AlertCircle } from "lucide-react";
 
+import type { Metadata } from "next";
+
+const metadata: Metadata = {
+  title: "Error - Onashirt",
+  description:
+    " There was an error during the authentication process. Please try again or contact support.",
+};
+
 export default function AuthError() {
   // const searchParams = useSearchParams();
   const [error, setError] = useState<string | null>(null);

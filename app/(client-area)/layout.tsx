@@ -2,7 +2,7 @@ import "~/styles/globals.css";
 
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "3D Shirt Customizer",
   description:
     "Design custom shirts in stunning 3D with our interactive customizer tool",

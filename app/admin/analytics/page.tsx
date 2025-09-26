@@ -50,7 +50,7 @@ import {
 } from "lucide-react";
 
 import type { Metadata } from "next";
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "Analytics | Admin Dashboard",
   description:
     "Detailed insights into your website performance and user behavior",

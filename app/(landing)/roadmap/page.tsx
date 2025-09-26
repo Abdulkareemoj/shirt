@@ -14,7 +14,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import { siteConfig } from "~/lib/site";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "Roadmap",
   description: `Explore the product roadmap of ${siteConfig.name} and see what's coming next in our development plans.`,
 };

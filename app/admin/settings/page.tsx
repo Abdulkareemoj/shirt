@@ -24,7 +24,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import type { Metadata } from "next";
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "Settings | Admin Dashboard",
   description: "Manage and configure your dashboard settings",
 };

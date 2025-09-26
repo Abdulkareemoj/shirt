@@ -7,7 +7,7 @@ import ActivityFeed from "~/components/dashboard/activity-feed";
 import PopularTemplates from "~/components/dashboard/popular-templates";
 import UpcomingOrders from "~/components/dashboard/upcoming-orders";
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "Dashboard | 3D Shirt Customizer",
   description: "View your designs, orders, and account information",
 };

@@ -3,7 +3,7 @@ import { ArrowLeft } from "lucide-react";
 import { siteConfig } from "~/lib/site";
 
 import type { Metadata } from "next";
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "Terms of Service",
   description: `Read the terms of service of ${siteConfig.name} to understand the rules and regulations for using our platform.`,
 };

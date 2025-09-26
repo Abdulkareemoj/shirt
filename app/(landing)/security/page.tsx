@@ -18,7 +18,7 @@ import {
 
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "Security",
   description:
     "Your data security and privacy are our top priorities. Learn how we protect your information.",

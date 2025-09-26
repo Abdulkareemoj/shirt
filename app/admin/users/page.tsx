@@ -25,7 +25,7 @@ import {
 import { toast } from "sonner";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "Users | Admin Dashboard",
   description: "Manage users in the admin dashboard",
 };

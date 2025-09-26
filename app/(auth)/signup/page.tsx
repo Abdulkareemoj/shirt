@@ -31,11 +31,12 @@ import { Label } from "~/components/ui/label";
 import { signUp } from "~/lib/auth-client";
 
 import { X } from "lucide-react";
+import type { Metadata } from "next";
 
 // Infer the type from the schema
 type SignUpFormValues = z.infer<typeof signUpSchema>;
 
-export const metadata = {
+const metadata = {
   title: "Sign Up - Onashirt",
   description:
     "Create an account to start designing custom shirts with Onashirt.",

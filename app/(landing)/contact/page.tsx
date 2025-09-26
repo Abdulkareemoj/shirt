@@ -45,7 +45,7 @@ import { Alert, AlertDescription, AlertTitle } from "~/components/ui/alert";
 import type { Metadata } from "next";
 import { siteConfig } from "~/lib/site";
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "Contact Us",
   description: `Get in touch with the ${siteConfig.name} team for support, inquiries, or feedback. We're here to help!`,
 };

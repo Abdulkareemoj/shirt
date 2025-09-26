@@ -28,8 +28,9 @@ import {
   FormMessage,
 } from "~/components/ui/form";
 import { signInSchema, type SignInFormValues } from "~/lib/schemas";
+import type { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Sign In - Onashirt",
   description: "Sign in to your Onashirt account to design custom shirts.",
 };

@@ -6,7 +6,7 @@ import { siteConfig } from "~/lib/site";
 
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "Changelog",
   description: `Stay updated with the latest changes and improvements to ${siteConfig.name}.`,
 };

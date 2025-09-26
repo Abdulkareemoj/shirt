@@ -5,7 +5,7 @@ import { Card, CardContent } from "~/components/ui/card";
 import { siteConfig } from "~/lib/site";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "About Us",
   description: `Learn more about ${siteConfig.name} and how we help you put something interesting on a shirt.`,
 };

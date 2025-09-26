@@ -27,8 +27,9 @@ import {
   forgotPasswordSchema,
   type ForgotPasswordFormValues,
 } from "~/lib/schemas";
+import type { Metadata } from "next";
 
-export const metadata = {
+const metadata: Metadata = {
   title: "Forgot Password - Onashirt",
   description:
     "Reset your Onashirt account password by entering your email address.",
