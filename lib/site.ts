@@ -3,14 +3,24 @@ const site_url = process.env.NEXT_PUBLIC_APP_URL;
 export const siteConfig = {
   name: "onashirt",
   description:
-    "Put something intresting on a shirt and share with your friends.",
+    "Put something interesting on a shirt and share with your friends.",
   url: site_url,
   ogImage: `${site_url}/_static/og.jpg`,
+  keywords: [
+    "custom shirts",
+    "funny t-shirts",
+    "design your shirt",
+    "print on demand",
+    "onashirt",
+  ],
+  author: "Onashirt Team",
+  locale: "en_US",
+  canonical: site_url,
   links: {
     twitter: "https://twitter.com/abdulkareemoj",
     github: "https://github.com/abdulkareemoj/shirt",
   },
-  mailSupport: "support@saas-starter.com",
+  mailSupport: "support@onashirt.com",
 };
 
 export const footerLinks = [
