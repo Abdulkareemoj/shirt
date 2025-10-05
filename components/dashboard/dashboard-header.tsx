@@ -32,26 +32,10 @@ export default function DashboardHeader() {
               )}
             </Button>
           </div>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="gap-2">
-                <span className="hidden sm:inline-block">My Account</span>
-                <ChevronDown className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Profile</DropdownMenuItem>
-              <DropdownMenuItem>Settings</DropdownMenuItem>
-              <DropdownMenuItem>Billing</DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Log out</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+
           <Button asChild>
-            <Link href="/customize">
-              <Plus className="mr-2 h-4 w-4" />
+            <Link href="/customizer">
+              <Plus className="mr-2 size-4" />
               New Design
             </Link>
           </Button>
@@ -59,7 +43,7 @@ export default function DashboardHeader() {
       </div>
       <div className="flex flex-col gap-4 sm:flex-row">
         <div className="relative flex-1">
-          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+          <Search className="absolute left-2.5 top-2.5 size-4 text-muted-foreground" />
           <Input
             type="search"
             placeholder="Search designs, orders, templates..."
@@ -71,7 +55,7 @@ export default function DashboardHeader() {
             <DropdownMenuTrigger asChild>
               <Button variant="outline">
                 Filter
-                <ChevronDown className="ml-2 h-4 w-4" />
+                <ChevronDown className="ml-2 size-4" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
@@ -85,7 +69,7 @@ export default function DashboardHeader() {
             <DropdownMenuTrigger asChild>
               <Button variant="outline">
                 Sort
-                <ChevronDown className="ml-2 h-4 w-4" />
+                <ChevronDown className="ml-2 size-4" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
