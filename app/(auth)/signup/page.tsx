@@ -71,7 +71,6 @@ export default function SignUp() {
     });
   }
 
-  // Initialize the form with React Hook Form and Zod resolver
   const form = useForm<SignUpFormValues>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
@@ -83,7 +82,6 @@ export default function SignUp() {
     },
   });
 
-  // Handle form submission
   async function onSubmit(values: SignUpFormValues) {
     setIsLoading(true);
     setServerError(null);
