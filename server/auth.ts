@@ -3,13 +3,19 @@ import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { admin } from "better-auth/plugins/admin";
 import { emailOTP, oneTap, username } from "better-auth/plugins";
 import { db, schema } from "~/server/db";
+import { Resend } from "resend";
+import { EmailVerificationEmail } from "~/components/emails/email-verification-email";
+import { ResetPasswordEmail } from "~/components/emails/reset-password-email";
+import { PasswordConfirmEmail } from "~/components/emails/password-confirm-email";
 
-// const from = process.env.BETTER_AUTH_EMAIL || "delivered@resend.dev";
-// const to = process.env.TEST_EMAIL || "";
+const from = process.env.BETTER_AUTH_EMAIL || "delivered@resend.dev";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
 export const auth = betterAuth({
-  appName: "ShirtApp",
+  appName: "onashirt",
   database: drizzleAdapter(db, {
-    provider: "pg", // or "mysql", "sqlite"
+    provider: "pg",
     schema,
   }),
   plugins: [
@@ -27,54 +33,49 @@ export const auth = betterAuth({
       },
     }),
     oneTap(),
-    emailOTP({
-      async sendVerificationOTP({ email, otp, type }) {
-        // For now, we'll just log the OTP to console
-        // In production, you would send this via email service like Resend, SendGrid, etc.
-        console.log(`[${type.toUpperCase()}] OTP for ${email}: ${otp}`);
-
-        // Example with Resend (uncomment when you have email service configured):
-        // await resend.emails.send({
-        //   from: "noreply@yourdomain.com",
-        //   to: email,
-        //   subject: type === "sign-in" ? "Sign In OTP" : type === "email-verification" ? "Email Verification OTP" : "Password Reset OTP",
-        //   html: `<p>Your OTP is: <strong>${otp}</strong></p><p>This code will expire in 5 minutes.</p>`,
-        // });
-      },
-      otpLength: 6,
-      expiresIn: 300, // 5 minutes
-      allowedAttempts: 3,
-
-      overrideDefaultEmailVerification: true,
-    }),
   ],
+  emailVerification: {
+    async sendVerificationEmail({ user, url }) {
+      const res = await resend.emails.send({
+        from,
+        to: user.email,
+        subject: "Verify your email address",
+        react: EmailVerificationEmail({
+          username: user.email,
+        }),
+      });
+      console.log(res, user.email);
+    },
+    sendOnSignUp: true,
+    autoSignInAfterVerification: true,
+    expiresIn: 3600, // 1 hour
+  },
   emailAndPassword: {
     enabled: true,
-    // async sendResetPassword({ user, url }) {
-    //   await resend.emails.send({
-    //     from,
-    //     to: user.email,
-    //     subject: "Reset your password",
-    //     react: reactResetPasswordEmail({
-    //       username: user.email,
-    //       resetLink: url,
-    //     }),
-    //   });
-    // },
-    //   emailVerification: {
-    //     async sendVerificationEmail({ user, url }) {
-    //       const res = await resend.emails.send({
-    //         from,
-    //         to: to || user.email,
-    //         subject: "Verify your email address",
-    //         html: `<a href="${url}">Verify your email address</a>`,
-    //       });
-    //       console.log(res, user.email);
-    //     },
-    //   },
-    // onPasswordReset: async ({ user }, request) => {
-    // your logic here
-    // console.log(`Password for user ${user.email} has been reset.`);
+    async sendResetPassword({ user, url }) {
+      const res = await resend.emails.send({
+        from,
+        to: user.email,
+        subject: "Reset your password",
+        react: ResetPasswordEmail({
+          username: user.email,
+          resetLink: url,
+        }),
+      });
+      console.log(res, `Password reset link sent to ${user.email}.`);
+    },
+
+    async onPasswordReset({ user }, request) {
+      const res = await resend.emails.send({
+        from,
+        to: user.email,
+        subject: "Password Reset Confirmation",
+        react: PasswordConfirmEmail({
+          username: user.email,
+        }),
+      });
+      console.log(`Password for user ${user.email} has been reset.`);
+    },
   },
   account: {
     accountLinking: {
@@ -90,21 +91,5 @@ export const auth = betterAuth({
       clientId: process.env.DISCORD_CLIENT_ID || "",
       clientSecret: process.env.DISCORD_CLIENT_SECRET || "",
     },
-  },
-  emailVerification: {
-    // async
-    sendVerificationEmail: async ({ user, url, token }) => {
-      // const res = await resend.emails.send({
-      //         from,
-      //         to: to || user.email,
-      //         subject: "Verify your email address",
-      //         html: `<a href="${url}">Verify your email address</a>`,
-      //       });
-      //       console.log(res, user.email);
-      //     },
-    },
-    sendOnSignUp: true,
-    autoSignInAfterVerification: true,
-    expiresIn: 3600, // 1 hour
   },
 });
