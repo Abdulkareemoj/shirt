@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import { ArrowLeft, Tag, Bug, Sparkles, Zap, AlertCircle } from "lucide-react";
 import { Badge } from "~/components/ui/badge";
