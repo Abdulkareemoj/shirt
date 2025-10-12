@@ -84,7 +84,6 @@ export default function DesktopView() {
               <Download className="size-4 mr-2" />
               Download
             </Button>
-            <ModeToggle />
           </div>
         </div>
 
@@ -454,6 +453,7 @@ export default function DesktopView() {
           <Button>
             <Link href="/dashboard/designs">Saved Designs</Link>
           </Button>
+          <ModeToggle />
         </div>
 
         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">

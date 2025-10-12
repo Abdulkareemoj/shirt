@@ -232,25 +232,23 @@ export default function SignUp() {
 
               <div className="grid gap-2">
                 <Label htmlFor="image">Profile Image (optional)</Label>
-                <div className="flex items-end gap-4">
+                <div className="flex flex-col items-center justify-center gap-4">
+                  <Input
+                    id="image"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    className="w-full"
+                  />
                   {imagePreview && (
-                    <div className="relative w-16 h-16 rounded-sm overflow-hidden">
-                      <img
-                        src={imagePreview || "/placeholder.svg"}
-                        alt="Profile preview"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  )}
-                  <div className="flex items-center gap-2 w-full">
-                    <Input
-                      id="image"
-                      type="file"
-                      accept="image/*"
-                      onChange={handleImageChange}
-                      className="w-full"
-                    />
-                    {imagePreview && (
+                    <div className="flex flex-row items-center gap-2">
+                      <div className="relative size-25 rounded-sm overflow-hidden">
+                        <img
+                          src={imagePreview}
+                          alt="Profile preview"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
                       <X
                         className="cursor-pointer h-5 w-5 text-muted-foreground hover:text-foreground"
                         onClick={() => {
@@ -258,8 +256,8 @@ export default function SignUp() {
                           setImagePreview(null);
                         }}
                       />
-                    )}
-                  </div>
+                    </div>
+                  )}
                 </div>
               </div>
 
